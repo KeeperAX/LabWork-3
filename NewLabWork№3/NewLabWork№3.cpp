@@ -290,5 +290,3 @@ int main() {
     creatMatrix();
     return 0;
 }
-
-﻿
