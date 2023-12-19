@@ -127,7 +127,7 @@ void swapElements(int* matrix, int N){
     if (choice == 1) {
         for (int i = 0; i < N / 2; i++) {
             for (int j = 0; j < N / 2; j++) {
-                int key1 = *(matrix + i + j * N);
+                //int key1 = *(matrix + i + j * N);
                 int key2 = *(matrix + j + N / 2 + i * N);
                 int key3 = *(matrix + j + N * (N / 2) + i * N);
                 int key4 = *(matrix + j + N * N / 2 + (N / 2) + i * N);
@@ -177,6 +177,7 @@ void swapElements(int* matrix, int N){
     }
     cout << "\n\tИзмененная матрица.\n";
     consoleOutmatrix(matrix, N);
+    system("pause");
     sortMatrix(matrix, N);
 }
 void fillMatrix(int* matrix, int N) { 
@@ -237,46 +238,22 @@ void fillMatrix(int* matrix, int N) {
     }
     else if (choice == 2) {
         int step = 0;
-        for (int i = 0; i < N; i++) {
-            *(matrix + i * N + step) = rand() % (N * N) + 1;
-            this_thread::sleep_for(chrono::milliseconds(400));
-            system("cls");
-            consoleOutmatrix(matrix, N);
-        }
-        step++;
-        for (int i = 0; i < N; i++) {
-            *(matrix + (N - 1) * N + step - i * N) = rand() % (N * N) + 1;
-            this_thread::sleep_for(chrono::milliseconds(400));
-            system("cls");
-            consoleOutmatrix(matrix, N);
-        }
-        step++;
-        for (int i = 0; i < N; i++) {
-            *(matrix + 2 + i * N) = rand() % (N * N) + 1;
-            this_thread::sleep_for(chrono::milliseconds(400));
-            system("cls");
-            consoleOutmatrix(matrix, N);
-        }
-        step++;
-        for (int i = 0; i < N; i++) {
-            *(matrix + (N - 1) * N + 3 - i * N) = rand() % (N * N) + 1;
-            this_thread::sleep_for(chrono::milliseconds(400));
-            system("cls");
-            consoleOutmatrix(matrix, N);
-        }
-        step++;
-        for (int i = 0; i < N; i++) {
-            *(matrix + 4 + i * N) = rand() % (N * N) + 1;
-            this_thread::sleep_for(chrono::milliseconds(400));
-            system("cls");
-            consoleOutmatrix(matrix, N);
-        }
-        step++;
-        for (int i = 0; i < N; i++) {
-            *(matrix + N * N - 1 - i * N) = rand() % (N * N) + 1;
-            this_thread::sleep_for(chrono::milliseconds(400));
-            system("cls");
-            consoleOutmatrix(matrix, N);
+        while (step != N)
+        {
+            for (int i = 0; i < N; i++) {
+                *(matrix + i * N + step) = rand() % (N * N) + 1;
+                this_thread::sleep_for(chrono::milliseconds(400));
+                system("cls");
+                consoleOutmatrix(matrix, N);
+            }
+            step++;
+            for (int i = 0; i < N; i++) {
+                *(matrix + (N - 1) * N + step - i * N) = rand() % (N * N) + 1;
+                this_thread::sleep_for(chrono::milliseconds(400));
+                system("cls");
+                consoleOutmatrix(matrix, N);
+            }
+            step++;
         }
     }
     else if (choice == 3) {
@@ -303,7 +280,7 @@ void creatMatrix() {
     case 3: N = 10; break;
     default:system("cls"); cout << "\tНеверный синтаксис\n"; creatMatrix(); break;
     }
-    int* matrix = new int[N * N];
+    int* matrix = new int[N * N]; //Выделение памяти 
     fillMatrix(matrix, N);
     delete[] matrix;
 }
@@ -313,4 +290,5 @@ int main() {
     creatMatrix();
     return 0;
 }
+
 ﻿
